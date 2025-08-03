@@ -48,6 +48,10 @@ body {
   outline: none;
 }
 
+.calculator input::placeholder {
+  color: #00fff766;
+}
+
 .calculator input:hover,
 .calculator input:focus {
   box-shadow: inset 0 0 10px #00fff7;
