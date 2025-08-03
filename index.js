@@ -1,21 +1,27 @@
-const calculator = {
-  createCalculator(appendTo) {
-    const generatedId = this.randomId()
-    const parent = document.getElementById(appendTo);
-    if (!parent) {
+class Calculator{
+  constructor(appendTo) {
+    this.generatedId = ElementFactory.randomId();
+    this.appendTo = appendTo;
+    this.parent = document.getElementById(appendTo);
+  }
+  createCalculator() {
+    if (!this.parent) {
       console.log('parent not found')
       return;
     }
-    const generatedDiv = this.createDiv('calc-'+generatedId, 'calculator');
-    generatedDiv.appendChild(this.createInput('input-'+generatedId,'input_field', undefined, 'text'));
+    const generatedDiv = ElementFactory.createDiv('calc-'+this.generatedId, 'calculator');
+    generatedDiv.appendChild(ElementFactory.createInput('input-'+this.generatedId,'input_field', undefined, 'text'));
     for (let i = 0, calcButtons = "789C456/123*-0+="; i<calcButtons.length; i++) {
 
-      generatedDiv.appendChild(this.createButton(undefined, undefined, calcButtons[i]))
+      generatedDiv.appendChild(ElementFactory.createButton(undefined, undefined, calcButtons[i]))
     }
-    parent.appendChild(generatedDiv);
-  },
+    this.parent.appendChild(generatedDiv);
+  };
+};
 
-  createDiv(divId, divClass) {
+
+const ElementFactory = {
+    createDiv(divId, divClass) {
     const div = document.createElement('div');
 
     if (divId) div.id = divId;
@@ -51,6 +57,8 @@ const calculator = {
     if (prefix) return prefix + '-' + random;
     return random;
   }
-};
+}
 
-calculator.createCalculator('body');
+const testCalc = new Calculator('body');
+
+testCalc.createCalculator();
