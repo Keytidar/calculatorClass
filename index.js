@@ -1,7 +1,7 @@
 class Calculator {
   #generatedId;
   constructor(appendTo) {
-    this.#generatedId = ElementFactory.randomId();
+    this.#generatedId = elementFactory.randomId();
     this.appendTo = appendTo;
     this.parent = document.getElementById(appendTo);
   }
@@ -32,11 +32,11 @@ class Calculator {
       return;
     }
 
-    const generatedDiv = ElementFactory.createDiv('calc-' + this.#generatedId, 'calculator');
-    generatedDiv.appendChild(ElementFactory.createInput('input-' + this.#generatedId, 'input_field', undefined, 'text'));
+    const generatedDiv = elementFactory.createDiv('calc-' + this.#generatedId, 'calculator');
+    generatedDiv.appendChild(elementFactory.createInput('input-' + this.#generatedId, 'input_field', undefined, 'text'));
 
     for (let i = 0, calcButtons = "789C456/123*-0+="; i < calcButtons.length; i++) {
-      generatedDiv.appendChild(ElementFactory.createButton(undefined, undefined, calcButtons[i]));
+      generatedDiv.appendChild(elementFactory.createButton(undefined, undefined, calcButtons[i]));
     }
 
     this.parent.appendChild(generatedDiv);
@@ -85,7 +85,7 @@ class Calculator {
 
 
 
-const ElementFactory = {
+const elementFactory = {
   createDiv(divId, divClass) {
     const div = document.createElement('div');
     if (divId) div.id = divId;
